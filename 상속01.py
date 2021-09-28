@@ -18,6 +18,8 @@ class Student(Person):
         Person.__init__(self, name, phoneNumber)
         self.subject = subject
         self.studentID = studentID
+    #정의되지 않은 인자 처리
+
     #상속받은 메서드를 덮어쓰기(재정의) 
     def printInfo(self):
         print("Info(Name:{0}, Phone Number: {1})".format(  
@@ -25,11 +27,20 @@ class Student(Person):
         print("Info(Subject:{0}, StudentID: {1})".format(  
             self.subject, self.studentID))
 
+    def methodA(self, server, **user):
+        strURL = "http://" + server + "/?"
+        for key in user.keys():
+            strURL += key + "=" + user[key] + "&"
+        return strURL 
+
 #인스턴스 생성 
 p = Person("전우치", "010-222-1234")
 s = Student("이순신", "010-111-1234","컴공", "991122")
 
 p.printInfo()
 s.printInfo()
+
+print( s.methodA("credu.com", id="kim", name="전우치") ) 
+
 
 
