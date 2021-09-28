@@ -15,6 +15,7 @@ class Person:
 #인스턴스 생성(복사본은 여러개)
 p1 = Person()
 p2 = Person()
+p3 = Person() 
 print("인스턴스의 갯수:{0}".format(Person.num_person) )
 
 
