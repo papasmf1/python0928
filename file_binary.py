@@ -1,3 +1,5 @@
+#바이너리는 이진포맷 
+# rt(텍스트) rb(바이너리)
 f = open('Kalimba.mp3','rb')
 data = f.read()    # bytes
 f.close()
@@ -31,7 +33,7 @@ f.close()
 import struct
 
 # packing numerical data into bytes
-data = struct.pack("idd",1,10.3,-11.3)   # int, float, float
+data = struct.pack("idd", 1, 10.3, -11.3)   # int, float, float
 
 # unpacking bytes to numerical data
 (i,x,y) = struct.unpack("idd",data)   # i=1, x = 10.3, y=-11.3
