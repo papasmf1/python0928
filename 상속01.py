@@ -21,7 +21,12 @@ class Student(Person):
     #정의되지 않은 인자 처리
 
     #상속받은 메서드를 덮어쓰기(재정의) 
-    def printInfo(self):
+    def printInfo(self, **ar):
+
+        result = ""
+        for key in ar.keys():
+            result += key + "=" + ar[key] + "&"
+        print(result)
         print("Info(Name:{0}, Phone Number: {1})".format(  
             self.name, self.phoneNumber))
         print("Info(Subject:{0}, StudentID: {1})".format(  
@@ -40,7 +45,6 @@ s = Student("이순신", "010-111-1234","컴공", "991122")
 p.printInfo()
 s.printInfo()
 
-print( s.methodA("credu.com", id="kim", name="전우치") ) 
-
+s.printInfo(name="박문수", age="30")
 
 
