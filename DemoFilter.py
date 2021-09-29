@@ -6,8 +6,9 @@ def getBiggerThan20(i):
 
 #필터링하는 조건으로 함수를 넘기기 
 lst = [10, 25, 30]
-item = filter(getBiggerThan20, lst)
-for item in lst:
+iterItem = filter(getBiggerThan20, lst)
+for item in iterItem:
     print(item)
+
 
 
