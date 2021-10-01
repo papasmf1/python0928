@@ -3,6 +3,12 @@
 import sys 
 from PyQt5.QtWidgets import * 
 from PyQt5 import uic 
+#웹서버와 통신
+import urllib.request
+#크롤링
+from bs4 import BeautifulSoup
+
+
 
 #로딩하는 파일
 form_class = uic.loadUiType("DemoForm2.ui")[0]
@@ -15,7 +21,21 @@ class DemoForm(QMainWindow, form_class):
         self.setupUi(self)
     #시그널을 처리하는 슬롯 메서드
     def firstClick(self):
-        self.label.setText("버튼1번 클릭")
+        #파일에 저장(기존 파일에 첨부)
+        f = open("c:\\work\\webtoon.txt", "a+", encoding="utf-8")
+        for i in range(1,6):
+            url = "https://comic.naver.com/webtoon/list?titleId=20853&weekday=fri&page=" + str(i)
+            print(url)
+            data = urllib.request.urlopen(url)
+            soup = BeautifulSoup(data, "html.parser")
+            cartoons = soup.find_all("td", class_="title")
+
+            for item in cartoons:
+                title = item.find("a").text
+                print(title.strip() )
+                f.write(title.strip() + "\n")
+        f.close()    
+        self.label.setText("웹툰 리스트 저장~~")
     def secondClick(self):
         self.label.setText("버튼2번 클릭~~")
     def thirdClick(self):
